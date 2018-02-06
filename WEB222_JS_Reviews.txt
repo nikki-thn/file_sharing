@@ -1,0 +1,56 @@
+JAVASCRIPT:
+
+String:
+charAt(index): return a letter at position index
+charCodeAt(index): return ASCI code of the character at index
+indexOf('letter'): return index number of a letter (only first one count, first match)
+lastIndexOff('letter'): like indexOf (first one count, last match)
+split('delimiter'): split string into array
+substring(startIndex, stopIndex): return a substring from startIndex to stopIndex (stopIndex is not included)
+substr(startIndex, maxLength): return a substring from startIndex up to the max characters specified
+aString.toUpperCase()/toLowerCase(): turn aString to upper or lowercase
+aString.trim(): trim whitespaces from both ends of aString
+concat(): don't use, use + operator to concat strings
+aString.length: return string length, not a METHOD, no ()
+
+Date:
+var today = new Date();
+(new Date()).getDate(): return current date from 0 to 31
+(new Date()).getDay(): return 0 for Sunday and so on
+(new Date()).getMonth(): return 0 to 12
+(new Date()).getFullYear(): return current year
+(new Date()).getHours(): return 0 to 23 .... getMinutes(), getSeconds() ....
+(new Date()).toString(): return today (same as toLocaleString() )
+(new Date()).toLocaleString(): //Thu Jun 02 2016 11:11:50 GMT-0400 (Eastern Daylight Time)
+(new Date()).toDateString(): // Thu Jun 02 2016
+
+Array:
+arr.length: return array length, not a METHOD, no ()
+arr.concat(arr1, arr2): concatenate arrays
+arr.join('delimiter'): join all elements in array to a string 
+arr.pop(): removes last element of array and return the removed element
+arr.shift(): removes first element of array and return the removed element
+arr.push('new entry'): adds new entry to the end of array
+arr.reverse(): all elements are rearrange in reverse order
+arr.sort(): sort all elements base on ASCII (even for numbers, treat as string)
+arr.slice(startIndex, stopIndex): extracts part of array and return a new array (stopIndex not included)
+
+Math:
+Math.ceil(num): return an interger  has closest value to next number
+Math.floor(num): return an integer has closest value to last number
+Math.round(num): returns an integer that is closest to num
+Math.random(): generate a pseudorandom number between 0 <= random < 1
+Math.max(a,b,c,..): return largest number from parameters
+Math.min(a,b,c,...): return smallest number from parameters
+Math.pow(a,b): return a^b
+Math.sqrt(a): return squareroot of a
+
+Number:
+Number.MAX_VALUE/MIN_VALUE: return max/min numeric value in JS
+Number.NEGATIVE_INFINITY/POSITIVE_INFINITY: returns a negative / positive infinity value 
+aNum.toFixed(length): return n length of a number after decimal point
+aNum.toPrecision(totalLength): return totallength (leading 0s not included)
+
+Built-in Methods:
+eval("expression"): execute an expression
+typeof, instanceof
