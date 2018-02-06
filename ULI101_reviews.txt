@@ -1,0 +1,190 @@
+Using vi: command mode (default) / input mode (i) / last-line mode (:)
+          Command mode; h,j,k,i (for navigations), dd (delete a line), x(delete a char)
+          Last-line mode-  :q! - quit without saving
+                           :wq - quit and save
+                           :w - save without qitting 
+                           /pattern search (n - display next match)
+                           
+                           
+Filename expansion: * - zero or more of any character
+                    ? - any single character
+                    [ ] - one SINGLE character class / range (using ! or ^ for opposite)
+                    
+                    
+Regular expressions: . any single charcter 
+                     * zero or more of a character (need to specify)
+                     [ ] a SINGLE characater class
+                     ^ match at the beginning
+                     $ match at the end
+                     ?.*$: everything
+                     ^$: empty lines
+                     
+   **** Notes: [^abc] (exclusion) != ^[abc] (start with a/b/c)
+   
+env variables: $# - total number of variables
+               $@ = $* - all variables
+               $? - check last command
+   
+   
+sed 'address instruction' path/filename : -n - display ONLY lines matching regular (default is print all)
+                               
+awk 'pattern {action}' filename : **** $n is a special char means lastfield
+                                 -F : to specigy delimiter (default is space)
+                                 NR == lineNum
+                                 $rowNum
+                   
+                 
+ 
+ 
+   
+Permissions:  ON FILES - r: view contents delete, change file info (cat, touch)
+                         w: modify contents (rm, mv, etc)             
+                         x: execute right for exexcutable files     
+                
+              ON DIRECTORIES - r: see what is inside the directories (ls, cp if content is known)
+                               w: put or remove stuffs in/out directories 
+                               x: passthrough (aka change dir info or to access)
+
+
+USEFULL BASH keyboard shortcuts: 
+          CTRL + a : go to beginning of the line
+          CTRL + e : go to end of line
+          CTRL + w : delte a word before cursor
+          CTRL + u : delte everthing from sursor to the beginnign of line
+         
+    
+pwd: present working directory
+who: list users currently online
+whoami: view user's username
+
+
+ls - list:   -a: show all files (including hidden .file)
+             -A: will show "almost" (excluding hidden ones)
+             -l: detailed display (permissions, sizes, owner, etc)
+             -F: display "/" after dir, "*" after executable file
+             -i: display i-node number
+     
+mkdir - make dir: -p: create nested directories
+
+rmdir - remove EMPTY dir
+
+rm - remove files and DIRECTORIES: -i: interact (confirm every deletions)
+                                   -r or -R: recursive (remove every directories and files within) (won't rm directory without r)
+                                   -f: force delete (overwrite protection)
+                                   
+                  
+mv - move/rename: -i: interact (confirm if destination file exist)
+
+cp - copy: -i: interact (confirm if destination file exist)
+           -r: allows copy of directories and their contents (recursively)
+      
+touch - update existing file info or create new one
+
+file - determine file type
+
+find - search for files: -name: search by name
+                         -user: files belong to user
+                         -empty: empty files
+                         -mmin: modified less than -# mins ago (ex: find  / -mmin  -5)
+                         -size: by size (ex:  find . -size +100M/k)
+                                         
+chmod - change permission: -R - recursive change permission
+                           u= OR octal OR u+
+                         
+echo - display variables, write argument to stdout: -n - show without new line character
+***** echo $? - is 0 if last command runs succesfully, not equal to 0 otherwise
+
+man - view manual: -k: list command the related to (ex: man -k "download")
+
+tr - translate / subtitution: ex:   tr '[a-z]' '[A-Z]'  ,   tr  ":"  " "
+                                                                                                    
+cat - view contents of file(s)
+
+more - view contents one screen at a time: navigation keys (spacebar - next screen, b - previous screen, enter - next line, /search, q - quit)
+
+less - like more but with more navigation features
+
+head / tail - view first / last 10 lines by default : -numberofLine argument to specify
+
+diff - show differences between files
+
+uniq - display uniq lines of file(s)
+
+cut - select content and display : -c - cut chracter ( specify range 1-10, -10, 2-, 1-3,4,10- )
+                                   -f - cut fields ( ex: cut -f 2,5,7- review.txt)
+                                   -d - specify field delimiter (default is tab)
+                                   
+sort - sort (and merges) file(s): -f - ignore case **** (potential screw up)
+                                  -n - numeric sort
+                                  -u - display unique entries (after sort)
+                                  -r - reverse sort
+                                  -t - specify delimiter ( -t":" )
+                                  
+wc - counts num lines, words, characters: -l - count lines
+                                          -w - count words (delimited by space)
+                                          -c - count charaters (-m ???????)
+                                          no option - all 3 counts are displayed
+                                          
+grep - search for pattern in a FILE : -i - ignore case **** 
+                                      -n - show line numbers in the output (line numbers in orginal file)
+                                      -v - reverse match
+                                      -c - display the count of matched lines (just the count, nothing else)
+                                      -w - exact match with nothing else (ex: "Co" not "Conan/Colin/) field delimiter??
+                                      -E - for group search
+          *** pay attention to [^a] when to use -v [a]
+   
+                                      
+Redirection:  2> redirect stderr to 
+              2>&1 redirect stderr to stdout
+              1>&2 redirect stdout to error
+              >2 redirect stdout to stderr
+              << : "here" document
+              
+tee - display out + save it to a file, usually use in piping commands to split the flow of info 
+
+mailx - check mail box: 
+mail - to compose a new email (ex mail recipient@hostname -s "Subject" < file )
+
+scp - secure copies: ex: scp local.file user@host:/destination
+
+sftp - secure connect (get/put/lls, lcd, lpwd - l for local, bye/exit/Ctrl+d - to close connection)
+                                        
+ln - create hard link : -s ( or --symbolic) - soft links (files and directories - only root can create hardlink for directories)
+
+ps - view process status: -U (or -u??? username - show all process by users (must be on the same ip) (ex: ps -U ntruong4)
+
+kill #PID or %jobnum - to terminate a process: -9 - force kill a process ( kill -9 0 : will kill all bg processes)
+pkill processName: to kill a process by name
+
+top - continuously show running process ??????
+
+du pathName - show storage usage of files 
+quota: show quota
+
+date: display date and time
+cal: display calendar (cal month year ) , by default show current month, cal -y (show calendar of current year)
+
+wget link: download file to the current directory / home ??
+
+ssh ntruong4@ip address: to connect to the same computer on matrix
+
+LINUX EXTRA:
+
+ssh-copy-id username@server - copy ssh key to server 
+ 
+find . -name '*.txt' -exec mv {} filepath \; - find file match expression and move it to a location
+
+mkdir -p lab{1..9}/lab{1..9}_inlab 
+
+
+                                     
+                                   
+
+
+
+
+
+
+
+
+

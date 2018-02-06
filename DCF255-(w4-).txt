@@ -1,0 +1,44 @@
+----=====Week4=====----
+
+The Datalink and the physical layer are closedly related  
+  DATA LINK LAYER: 
+  Data-link layer functions: data framing, attach MAC address, physical address, flow control, error control (regulate the flow of data)
+  
+  Synchronous Transmission: large block of data of 1500 bytes long, start with a transmission flag and the same flag is used to end og transmission. 
+  Asynchronous Transmission: when noise are loud and retransmission is allowed.
+  
+  Simplex: one way communication (keyboard, monitor)
+  Half-duplex: can recieved and send but not at the same time (optic cable)
+  Full-Duplex: can received and send at the same time (cable)
+  
+TRANSMISSION ERRORS:
+  Types of Transmission Errors: 
+    Noise: 2 types of noises: thermal noises due to EMI (need to put a length to 100m), and random noise (spikes) unexpected jump in electricity. // EMI (Electromagnetic Interference): high power cable interfer the analog signal
+    Crosstalk: electrons from cables going opposite directions generates EMI at same time and causes signals to jump to the cable beside, twisted cable to cancel out EMI and reduce crosstalk.
+    Jitter: when computers jits out of time
+    
+Error Correction:
+    Backward Correction: receivers asks for reseding the signals
+    Forward Correction: redundant data to be corrected on the fly. Errors are detected by parity bits combines with hamming codes to correct data.
+    CRC: Cycnical Redudancy Check: based on polynomial alrithmetic to correct data by taking the remainder and add to the reciever computers. Catch errors at 99,99%.
+
+
+----=====Week5=====----
+
+Frame are switch, packet are routers
+
+10 physical link (from switches to routers), 3 data link (from router to router), 1 route
+
+5 things We need to get on the Internet: address for default gateway and subnet mask
+
+IPv6 is 4 times faster. because it simplified the router process.
+      
+  
+
+
+
+
+
+
+
+

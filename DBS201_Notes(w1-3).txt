@@ -1,0 +1,146 @@
+-----====Intro====-----
+
+Data: unprocessed information vs Information: processed data
+
+Problem with data and the need for data managagement (or a united file systems):
+       + Data redeundancy: same data in more than one location results inconsistency (data anamolies)
+       + Data anamalies - changes data in one location not other: modification anomalies, insertion and deletion
+       
+File Systems: programs were written to access data. However, difficult for complexed data on multiple locations, risen the need for database management  
+
+Database: a structure that contains logically related data in a single repository. A database contains: end-user component (data) and metadata (data about data)
+
+Types of databases: 
+       + Centralized: supports more than one users at a time, in one physical location, could be a pc, mid-range, or main-frame
+       + Distributed: distributed at several physical locations, constructs can differ by location (one uses pc, other uses main-frame)
+       
+Database Uses:  
+       + Productiion or Transaction: supports day-to-day operations
+       + Decision Support: Information for tactical or strategic decision making
+       + Data warehouse: Historical data
+       
+Advantages of Database Processing:
+       + Ability to get more information from the same amount of data, sharing data and controlling redundancy
+       + Balancing - to benefits all users, expanding security - restrictions can be imposed on data
+       + Increasing productivity, provides data independence (from software)
+       
+Disadvantages of Database Processing:
+       + Large file size: file now include metadata information
+       + Increased complexity: need to take into account data design, security, backup and recovery, integrity
+       + Greater impact of failure, more difficult to recover
+
+Data management system (DBMS): Collection of programs that manages batabase structure and controls access to the database, manages data sharing among multiple applications and users, data is more consistent, ability to do ad-hoc querying
+
+-----====Lecture1====-----
+
+SQL: Structured Query Language - designed to communicate with database
+
+SQL functions fit into 3 broad categorires: 
+       + Data definition language (DDL): includes commands to create
+       + Data manipulation language (DML): commands to insert, update, delete and retriev data within the database tables objects
+       + Transaction Control Language (TCL): includes commands to ensure the integrity of the database
+       
+Data Manipulation Commands:
+       + SELECT attributes (or fields)
+              FROM table(s) - table name
+              WHERE condition1 AND/OR condition2 - filter(s) (=, <, <=, !=)
+              ORDER BY attribute(s) - sort by 
+              
+        //Notes: no specifications on sort, data will be displayed in order which it was intitially added to the table  
+        //To sort data in descending order, use the DESC keyword after each field specified in the ORDER BY clause that is to be                          displayed in descending order
+
+        Ex: SELECT * 
+              FROM PRODUCT
+              WHERE PRODUCT_PRICE > 30.00 or PART_NUMBER = 'AX12'
+              ORDER BY ON_HAND, PART_NUMBER // sort by this column then next
+ 
+ -----====Lecture2====-----
+ 
+       + CREATE/DROP COLLECTION 'database name' -  Create a 'Database'
+              
+       Ex: CREATE COLLECTION DT201E35SQ
+           DROP COLLECTION PREMIERE35.CUSTOMER
+            
+       + CREATE/DROP TABLE 'Table name'
+       
+       Ex: CREATE TABLE CUSTOMER (
+              CUSTOMER_NUMBER CHAR (3) NOT NULL WITH DEFAULT,
+              FIRST_NAME CHAR (15) NOT NULL WITH DEFAULT,
+              ...,
+              CONSTRAINT CUSTOMER_CUSTOMER_NUMBER_PK PRIMARY KEY (CUSTOMER_NUMBER),
+              CONSTRAINT CUSTOMER_SALES_REP_NUMBER_FK FOREIGN KEY (SALES_REP_NUM) REFERENCES SALESREP (SALES_REP_NUM)
+              //need to create table SALESREP first, apply PK on both tables same type, length, etc
+              CONSTRAINT CUSTOMER_CUSTOMER_BALANCE_CK CHECK (CUSTOMER_BALANCE IN (3000, 5000,))
+              //or (CUSTOMER_BALANCE BETWEEN 1 AND 5000)  )
+       
+       + DROP TABLE 'tablename' : to delete a table
+       
+       + INSERT : to insert data into a table
+       
+       Ex: INSERT INTO PREMIERE35.CUSTOMER VALUES ('999', 'TRUONG', 'NIKKI', '201 POND RD', 'TORONTO', 'ON', 11111, 2000, 3000, '99') 
+           INSERT INTO PREMIERE35.SALESREP (SALES_REP_NUMBER, LAST_NAME, FIRST_NAME, STREET, CITY, STATE, ZIP_CODE, COMMISSION, RATE)                VALUES ('00', 'SMITH', 'JOHN', '201 POND RD', 'TORONTO', 'ON' 11111, 44444, .15)         
+       
+    
+-----====Lecture3====-----
+              
+       // to delete entry (rows) in a table       
+       + DELETE FROM tableName 
+                WHERE condition(s)
+                
+       Ex: DELETE FROM PREMIERE35.CUSTOMER WHERE CUSTOMER_NUMBER = '998'
+           DELETE FROM SALESREP //delete all rows in SALESREP table
+           
+Constraints: are used to ensure database recives 'good data
+       PRIMARY KEY: unique and not null
+              - provide quick access to a row on table
+              - guarantee uniqueness of the PK field
+              - insists a PK value be specified by user for every row on table
+       NOT NULL: a value must exist
+              - NOT NULL: user must specify a value
+              - NOT NULL WITH DEFAULT: user must specify a value or system will (with 0)
+              - NOT NULL WITH DEFAULT 'value' : user must specify a value or system will put in 'value' (could be 1, 2, 100, etc)
+       UNIQUE: value exists only once in a column
+       CHECK: value must pass validation criteria
+       FOREIGN KEY: used to enforece Relational Intergrity between two tables
+       
+                
+       + ALTER TABLE : uses to change or modify table, add/drop constraint, add/alter/drop a field, etc
+       
+       Ex: ALTER TABLE CUSTOMER //notes that FK is in the CUSTOMER table
+           ADD CONSTRAINT SALESREP_SALESREP_FK FOREIGN KEY (SALES_REP_NUMBER) REFERENCES SALESREP (SALES_REP_NUMBER)
+           
+           ALTER TABLE PREMIERE35.SALESREP
+           ADD CONSTRAINT SALESREP_RATE_CK CHECK (RATE IN (0.05, 0.06, 0.07, 0.15))
+           
+           ALTER TABLE EMPLOYEE
+           ADD CONSTRAINT ONTARIO_MEDIACARE_NUM_UN UNIQUE (ONTARIO_MEDICARE_NUM)
+           
+           ALTER TABLE CUSTOMER
+           ADD COLUMN CUSTOMER_BALANCE dec (4, 2)
+           
+           ALTER TABLE CUSTOMER
+           ADD COLUMN CUSTOMER_BALANCE 
+           SET DATA TYPE DEC(5,2) NOT NULL WITH DEFAULT 'abc'
+           
+           ALTER TABLE SALESREP
+           DROP COLUMN BALANCE
+           
+        + UPDATE tableName 
+              SET columnName = newValue
+              WHERE condition(s)
+              
+         Ex: UPDATE SALESREP
+              SET RATE = 0.07
+              WHERE SALES_REP_NUMBER = '999'
+        
+       
+           
+
+
+
+       
+       
+       
+
+
+

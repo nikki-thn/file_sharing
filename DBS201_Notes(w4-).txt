@@ -1,0 +1,109 @@
+-----====Lecture4====-----
+
+Reviews: 
+5 types of constraint: check, unique, PK, FK, Not Null
+Can't add a FK when the other table doesn't exist (certain order that we have to follow)
+
+The column Price can be numeric or decinmal. Numberic (99.99) is zoned decimal vs packed decimal (less stirage space, calculation is faster)
+
+15 digits takes up 15 bytes if it is specified as NUMERIC
+15 digits takes up 8 bytes if it is specified as DECIMAL
+
+HOW TO JOIN TABLE: show fields from more than one table at the time
+
+Two tables need to have a common field. 
+
+SELECT C.LASTNAME, C.FIRST_NAME,
+       S.LAST_NAME, S.FIRST_NAME
+FROM PREMIERE.CUSTOMER, C, PREMIERE.SALESREP  C,
+WHERE  
+
+
+SELECT P.PRODUCT_ID, P.PRODUCT_NAME,
+       P.SID, S.SUPPLIER_NAME
+FROM DBS201SQL.PRODUCT P, DBS201SQL.SUPPLIER S //P IS THE ALIAS FOR DBS201SQL.PRODUCT
+WHERE P.SID = S.SUPP_ID
+ORDER BY P.PRODUCT_NAME
+
+A VIEW: is a virtual table, which shows a joined table behind it, view does NOT store data, pointer to the tables where the data exist, cannot be alter (has to delete and create again)
+
+CREATE VIEW PRODUCT_SUPPLLIER 
+  AS (SELECT P.PRODUCT ....
+       WHERE P.SID = S.SUPP_ID) // CAN'T use ORDER BY in VIEW
+//qualierfier : is the keyword to clarify ex, premiere35.customer then premiere35 is the qualifier
+
+example: join CUSTOMER and SALESREP
+
+|| ' ' || - to glue two strings together with specified character between (this case is space)
+
+CREATE VIEW PREMIERE35/CUST_REP AS (
+SELECT CUSTOMER.CUSTOMER_NUMBER,
+       TRIM (CUSTOMER.FIRST_NAME) ||' '|| CUSTOMER.LAST_NAME AS CUST_NAME, 
+       TRIM (SALESREP.FIRST_NAME) || ' ' || SALESREP.LAST_NAME AS REP_NAME 
+FROM CUSTOMER , SALESREP                       
+WHERE CUSTOMER.SALES_REP_NUMBER = SALESREP.SALES_REP_NUMBER ) 
+
+CREATE VIEW ORDER_INFO AS (
+SELECT ORDERS.ORDER_DATE, ORDERS.CUSTOMER_NUMBER, ORDERS.ORDER_NUMBER, 
+       ORDERLINE.PART_NUMBER, ORDERLINE.NUMBER_ORDERED, ORDERLINE.QUOTED_PRICE,
+       ORDERLINE.NUMBER_ORDERED*ORDERLINE.QUOTED_PRICE AS COST
+FROM ORDERS, ORDERLINE
+WHERE ORDERS.ORDER_NUMBER = ORDERLINE.ORDER_NUMBER )
+
+//Need to get rid of ORDER BY, and put it in a valid library that we have access to
+
+DROP VIEW DT201DBS.CUST_REP 
+
+
+CREATE TABLE ORDERLINE AS (SELECT * FROM PREMIERE.ORDERLINE) WITH DATA (or WITH NO DATA) //to copy a table from one library to another
+
+
+---====Lecture 5====---
+
+Permission on Database Objects:
+
+to GRANT or REVOKE access to SQL collection, cannot do when we're in the collection
+
+GRANT: grant permission on collection
+   ex: GRANT INSERT, SELECT (read), DELETE (remove records), INDEX (order or sort table), VIEW, UPDATE ON CUSTOMER TO DB201E43, DT201B41
+   
+
+REVOKE: take away permission
+    ex: REVOKE SELECT, INSERT, UPDATE ON CUSTOMER ON DB201E35
+    
+set permission on own collection to from *PUBLIC to *EXCLUDE 
+
+Creating an INDEX: for faster processing on large table
+CREATE INDEX CUSTLNAME ON PREMIEREB45/CUSTOMER(LAST_NAME) = translate to order by lastname
+cant view an index from sql mode, but we can view and work with index on native site???
+
+Data is not duplicated in INDEXES: an index containts pointers to rows in a table, any changes on table need to be change on view or index to reflect changes.
+
+WRKMBPDM DBS201LIB/LAB6
+RUNSQLSTM - run SQL statement
+
+-----====Lecture6====-----
+
+ERD: Entity Relationship Database???
+
+Entities: people, places, things ot concepts about which info must be recorded
+Atttributes: attributes of an entity (name, dob, transactions of customer entity)
+Relationship: relationship found betweens entities
+
+ERD: should capture all required info, make sure data appears only once (numeric vs decimal, zone vs not!! will be on test)
+
+Steps in designing an ERD:
+  Create entities by identifying the people, places or events about 
+  Define attributes
+  Select a Unique Identifier:
+  Define relationships: 
+  Determine Optionality and Cardinality
+  Name rls:
+  Eliminate Many-to-Many relationship
+
+
+
+
+
+
+

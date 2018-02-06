@@ -1,0 +1,119 @@
+----=====Week1=====----
+
+REVIEWS
+Terminology: 
+  Computer - programmable devices to create/stores digital data
+  Data communication - sending signals across point-to-point circuit
+  Networking - collections or networks of point-to-point circuits for exchange data or sharing resources
+
+Why data communication?
+  "converging" of netwokring and programing
+   To understand how hackers can misuse mobile/web apps
+   "the network is the computer" - John Gage refers to cloud computing
+   
+Brief History of Networking:
+  Host to mainframe: centralize processsing, everything is done on server, powerful but very expensive, buy hardware & software from from same verndor (vendor lock-in)
+  Client-Server: 2-tier programming, cost lower, distributing
+  Internet: n-tier programming - 3 layers: user presentation - business logic - data management 
+  Cloud computing: intergrating cloud into LANs (IT transformation), data-centric, out sourcing
+  
+**Speed vs throughput - the actual speed the client computer receives
+  Saas / Iaas / Paas - Service / Infrastructure / Platforms
+  BLOOM: new programming language to work with large amount of data
+  
+  Data-link communication devices (sending signal from point to point): Modem, hub, multiplex, wireless access point, infrared devices, NIC, smart phone, switches, bridges
+  Network devices (interoperation between networks): server, switches, routers, firewalls
+ 
+ 
+----=====Week2=====----
+
+CLASSNOTES:  
+Open System Inter-Connection (OSI) has 7 layers: Application, Presentation, Session, Transport, Internet, Data Link, Physical
+The original TCP/IP has 4 layers: Application, Transport, Internet, Networking
+
+ISO - the Intenational Organization for Standardization: created OSI in early 70s is the 7 layers model, not learn in this class
+Transmission Control Protocol/Internet Protocol (TCP/IP) - didnot get replace by OSI because 7 layers are overly complexed
+Each layer is independent from the other and rely on the other. Layer below provide a service to the layer above, each layer has protocol specification. 5 layers are numbered from bottom up:
+
+   Networking layers:
+   5. Application (OSI or (strictly TCP/IP)): responsible to create a message (MESSAGE)              GET
+   4. Transport (strictly TCP/IP): get the message ready to be used on network (create packet), add header (sequence number, port, protocal, etc that's gonna be used) (PACKET)                                               T | GET
+   3. Internet (strictly TCP/IP): carry the packet (DATAGRAM), add IP address (not use on network, only from one switch network to another)                                                                                  I | T | GET
+   
+   Data layers: only understand electrical signals, machines have to be on same encoding scheme
+   2. Data Link: take the packet, frame it and add trailer to the back, has MAC address set the fram digitally accross the physical layer using signal (FRAME)                                                      D | I | T | GET | D
+   1. Physical: encode the signal and transmit the bits across physical medium (BITS)
+
+ex: Application layer take the GET message and put it in the TCP envelop, then put it into a bigger envelop of IP, then put it in Frame with enthernet header and trailer. 
+
+ Connection-oriented: TCP/IP create a path way from machine to router, routers to routers, multi path pipes together to get the signal through, not a single straight nothing in between point A to X but has things in between.
+ 
+ Protocol Specification: message sequence, message type, message syntax - meaning, format, hot does it lay out, type of connection 
+  
+  Ex: http as protocol: 
+
+      Message Sequence: send text file from your browser to web server (text file across a link). We send a string by entering            URL, server response the message, server can never initate a message, they can only response.
+      Message Type: GET (set a command to get file) or POST (send entire file to server to do process) (is it connection-oriented?)
+      Message Syntax: add at the beginning (header) and end of the message (trailer) 
+      ***header has to follow with 2 blank lines \r\n (2 times) otherwise the browser will not understand (both for client and server)
+      
+UTF-8 Encoding - (Universal Coded Character Set + Transformation Format – 8-bit.) :superset of ASCII, first set is ASCII
+      A unicode has the format U+ follow by hexadecimal numbers (ex U+0000 ~ U+007F/U+07FF/U+FFFF)
+      
+Wireless access point: translate wireless to wire signals      
+----=====Week3=====----     
+
+Electricity & Magnetism: 
+  Amplitude: height of the frequency, measure in volts or watts
+  Frequency: number of completed periods in a second
+  Period: the time it takes to complete one cycle
+  
+Phase: starting position of a wave at time zero (can be 0, 90 or 180 degree)
+
+Types of Signals: 
+  Analog signal: signal in an ifinite waveform, best for carry large amount of data (capacity), a continue rising and falling of voltage
+  Digital signal: a square waveform, are not susceptible to noise as analog are, noise are analog wave form that can destroy anallg signal, digital equipment is cheaper to produce.
+  
+  + Digital Data carried by a Digital Signal:
+    - signal must be translate to 0 & 1. Most popular method is NRZI (Non Return to Zero Inverted) where a change in voltage at the beginning represent 0 and no change represent 1. 
+    - problem is a long string of 0 will lose synch midway, to avoid they have to put 1 in a long string of 0 
+    
+   + Digital Data carried by an Analog Signal:
+    - Each digital data is carried by an analog signal with a reserved specified frequency. within each frequency band, digital data is sent using modulation techniques (called shift-keying). Using frequency to represent 0 & 1, or phase shift-keying to represent 0 & 1 or amplitude to represents signals. PSK is least susceptible to noise and is very accurate.
+    Example: Cable TV and modem
+    
+   + Analog Data carried by an Analog Signal:
+    - using strong analog signal at a specific frequency to carry data
+   Example: AM and FM radio
+   
+   + Analog Data carried by Digital Signals:
+    - Message is converted from analog signal to digital signal and sent, later convert back on the other end. The conversion process is called Pulse Code Modulation which involes 3 steps:
+      1. Sampling: sample the analog waveform at fixed intervals
+      2. Quantatization: convert the amplitude to a digital values
+      3. PAM (Pulse Code Modulation) : convert digital values to an analog signals
+      
+Nyquist Theorem: to get good quality of a waveform have to sample two times the highest frequency      
+ 
+Relationship between Frequency and Bit Rate: faster data trasfer can only be done in two ways 
+  - send more bits per second at same frequency (increase the potential errors if noise is not low)
+  - keep same bit rate and increase frequency (increase noise and EMI which could intefere adjacent cables)
+  
+Metric Notation: notes the correct number of decimal and position of unit. ex: 8.5 Mbps, or 8.5 kbps, not 8500 kpbs
+  K - kilo 1,000
+  M - Mega 1,000,000 
+  G - Giga 1,000,000,000
+  T - Tera 1,000,000,000,000
+  P - Peta 1,000,000,000,000,000
+  
+Type of cableS: 3 basic types
+  - UTP (Unshielfed twisted pair) / STP (Shielded twisted pair): 4 pair of cables (8 total) inside a PVC protective jacket. Each pair carry equal but opposite signals to minimal crosstalk. The shielded one protects the signal from external EMI and increase attenuation by having electron bounce back.
+  - Coaxial: a sigle core copper wire that is protected against outside EMI and prevent electron leakage, good use to carry weak signals that have low tolerate interference
+  - Fiber Optic: Great to carry data that only travels one way.
+  
+Type of Connections: 
+  - DSL: Digital Subscriber Line .ADSL - Asymmetric Digital Subscriber Line : different speed of downloading and uploading
+  - Cable modem: cable transfer telephone signal and internet signal
+  - Bell fiber: ??
+  - IP multicasting: server only send one data and distribute to multiple users
+  
+  

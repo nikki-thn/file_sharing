@@ -1,0 +1,38 @@
+ACLs (Access control lists) 
+Service License Agreements (SLAs) 
+Infrastructure as a Service (IaaS)(PaaS)(SaaS)
+the International Organization for Standardization (ISO)
+Open System Inter-Connection (OSI)
+TCP/IP protocol suite (Transmission Control Protocol/Internet Protocol)
+Hypertext Transfer Protocol (HTTP) - File Transfer Protocol (FTP)  -  Simple Mail Transfer Protocol (SMTP) 
+Domain Name System (DNS)
+UTF-8 (Universal Coded Character Set + Transformation Format – 8-bit.)
+The International Telecommunications Union, Telecommunications division (ITU-T) 
+American National Standards Institute (ANSI)
+the Standard Council of Canada (SCC) in Canada 
+The Electric Industry Alliance (EIA) and the Telecommunications Industry Association (TIA) 
+The Institute of Electrical and Electronic Engineers (IEEE) 
+IETF, Internet Engineering Task Force
+Using PAM (Pulse Amplitude Modulation) 
+Digital Subscriber Line (DSL)
+ADSL, Asymmetric Digital Subscriber Line
+CRC refers to the “Cyclical Redundancy Check” 
+Asynchronous Transfer Mode (ATM) 
+public switched telephone network (PSTN)
+NAT, Network Address Translator
+DHCP, Dynamic Host Configuration Protocols 
+ICMP, (Internet Control Message Protocol) 
+ARP Address Resolution Protocol
+
+
+Quadrapture Phase Shift-Keying (QPSK)
+UDP (User Datagram Protocol) 
+Simple Network Management Protocol (SNMP) 
+Routing Information Protocol (RIP) 
+IGMP (IP Group Membership Protocol)
+RTSP (Real-Time Streaming Protocol)
+CIDR, Classless Inter-Domain Routing 
+MLD, Multicast Listener Discovery 
+ND, Neighbor Discovery 
+fully qualified domain names (FQDN)
+cable modem termination system (CMTS) 

@@ -1,0 +1,89 @@
+CREATE TABLE SEASONS AS (SELECT * FROM SOCCER.SEASONS) WITH DATA
+
+Q1:
+ALTER TABLE COACH ADD CONSTRAINT COACH_COACHID_PK PRIMARY KEY (COACHID)
+ALTER TABLE SEASONS ADD CONSTRAINT SEASONS_COACHID_FK FOREIGN KEY (COACHID) REFERENCES COACH (COACHID)
+
+Q2:
+
+Q3:
+CREATE TABLE TEAMS AS  (SELECT * FROM SOCCER.TEAMS) WITH NO DATA
+INSERT INTO TEAMS SELECT * FROM SOCCER.TEAMS
+
+Q4:
+CREATE VIEW TEAM1117 AS (
+  SELECT P.PLAYERID, PT.TEAMID, TRIM (P.FNAME ||' '|| P.LNAME AS FULL_NAME, P.PHONE, P.RATING
+  FROM PLAYER P, PLAYERTEAM PT
+  WHERE P.PLAYERID = PT.PLAYERID AND TEAMID = 11 AND TYEAR = 2017 )
+  
+Q5: 
+SELECT SP.SPONSORNME, SP.CONTACT, SP.PHONE, S.SPONSORFEE, S.TEAMID 
+FROM SPONDOR SP, SEASONS
+WHERE SP.SPONSORID = S.SPONDORID AND TYEAR = '2017'
+
+Q6:
+ALTER TABLE PLAYER ADD COLUMN FIRST_SEASON DATE NOT NULL WITH DEFAULT //Date type like numeric or decimal, NO LENGTH FOR DATE TYPE
+
+Q7:
+INSERT INTO SPONSOR (SPONSORID, SPONDORNME, STREET, CITY, PCODE, CONTACT, PHONE, TOTALAMT) VALUES ('70 THE POND RD', 'NORTH YORK', 'M3J3M6', 'RUSSELL PANGBORN', 4164915050, 500, 444, 'SENECA COLLEGE')
+//if we not aware of the table field's order, then specify column and the values correspondent
+
+Q8:
+DELETE FROM SPONSOR WHERE SPONSORID = 444 //pick the unique identifier as it might delete more records than we want to
+
+Q9:
+DROP TABLE PLAYERTEAM
+
+Q10:
+DROP COLLECTION SOCCER
+
+Q11:
+create view userview1 as (                                          
+ select i.invoiceID, i.invoiceDate, t.teamNo as Work_Team,          
+        c.custID || ' - ' || trim(c.custfname) || ' ' || 
+        trim (c.custlname) as customer, 
+        trim (c.custAddress), trim (e.equipname), s.servicecode,     
+        trim (s.servicedesc), s.hrcharge, ik.workduration,
+        s.hrcharge * ik.workduration as total_charge                             
+ from invoice i, team t, customer c, equipment e, invoice_equip ie, 
+      service s, invoice_service ik                                 
+ where i.teamNo = t.teamNo and i.custID = c.custID and              
+       i.invoiceID = ie.invoiceID and e.equipID = ie.equipID and    
+       i.invoiceID = ik.invoiceID and s.serviceCode = ik.serviceCode
+       )                                                            
+                                                                    
+create view userview2 as (
+  select t.teamNo, t.teamDesc, e.empID, e.position
+         e.empFName || ' ' || e.empLName as name,
+         e.empOHIP, e.empPhone as home_phone, e.empstdate,
+         s.skillDesc
+  from team t, employee e, skill s, employee_skill es
+  where t.teamNo = e.teamNo and s.skillID = es.skillID
+        and es.empID = e.
+        
+create view userview3 as (
+  select p.prodclass, p.prodID, p.prodDesc, p.prodPrice,
+         ipr.qtySold, i.invoicID, i.invoiceDate, 
+         s.sRepID || ' - ' || s.sRepFName || ' ' ||  
+         s.sRepLName as Sales_Assistant, 
+         c.custID
+  from classification cl, product p, invoice i, salesrep s,
+       invoice_product ipr, customer c
+  where cl.prodclass = p.prodclass and s.srepID = p.srepID and
+        ipr.invoiceID = i.invoiceID and ipr.prodID = ipr.prodID
+        and c.custID = i.custID and i.teamNo = t.teamNo
+        
+create view userview4 as (
+  select cl.prodclass, cl.classification, p.prodID, p.proddesc,
+         p.prodPrice, cl.markup, p.prodPrice * cl.markup as     
+         charge
+  from classification cl, product p
+  where p.prodclass = cl.prodclass
+  
+create view userview5 as (
+  select p.prodID, p.proddesc, p.inventory, p.aisleNo, 
+         s.supName
+  from product p, supplier s
+  where p.prodID = s.supID
+        
+  

@@ -1,0 +1,171 @@
+---=== CUSTOMIZE/FORMAT OUTPUT WITH ROW FUNCTIONS ===---
+
+//STRINGS
+
+**USE & to prompt from user, use && to reuse value
+ ex: SELECT employee_id, last_name, &column_name
+     FROM employees
+     WHERE &condition
+     ORDER BY &specified_column
+     
+     SELECT employee_id, last_name, &column_name
+     FROM employees
+     WHERE &&column_name
+     
+LOWER/UPPER(column or expression): convert string to lower/upper case
+INITCAP( ... ): Capitalize first letter in a string
+  ex: SELECT 'The job ID for' || INITCAP(last_name) || 'is' || UPPER(job_id)
+      FROM employees
+
+
+SUBSTR( ..., ): return substring in a string
+  ex: SUBSTR('this is a string', 1,4) -> this
+  
+  
+CONCAT( ): use ||, needs 2 arguments
+
+
+LENGTH(...): returns number of characters in an expression
+  ex: LENGTH('HelloWorld') -> 10
+
+INSTR: return position (in number) of a character
+  ex: INSTR('HelloWorld', 'W') -> 6 ???case-sensitive???
+
+
+LPAD: padding/fill the left side with character
+RLAD: same but on the right side
+  ex: LPAD(salary, 10, '-') -> -----35000
+      RPAD(salary, 10, '-') -> 35000-----
+     
+---==== GROUP FUNCTIONS ====---    
+AVG / COUNT / MAX / MIN / SUM / STDDEV / VARIANCE (distinct / all by default col): ** ignore null values, make sure to use nvl if we want null to be accounted for
+
+
+
+
+TRIM(...): trim a string
+  ex: TRIM('H' FROM 'Helloworld')
+  
+  
+REPLACE(...):
+  ex: REPLACE('JACK and JUE', 'J', 'BL') -> BLACK and BLUE
+
+
+//////NUMBERS
+
+ROUND: rounds value to a specific decimal
+  ex: ROUND(45.926485, 2) -> 45.93
+      ROUND(3100, -3) -> 3000  (because 3.1 got round DOWN to 3.0, hence 3000)
+      ROUND(2600, -3) -> 3000
+      ROUND(2500, -3) -> 3000
+  
+TRUNC: truncate, not round up
+  ex: TRUNC(45.92354, 2) -> 45.92
+      TRUNC(45.923, -1) -> 40
+  
+MOD: modular, usually use to determine of a number is odd or even
+  ex: MOD(1600, 300) -> 100
+  
+/////DATES
+
+SYSDATE: system date, return date and time
+  ex: SELECT SYSDATE FROM DUAL //dual is a dummy table to display result of function call
+  
+We can perform: 
+  Date +/- number
+  Date - Date
+  Date + number/24 Date: adds a number of hours to a date
+  
+Ex: find how many weeks employee has worked base on hire_date
+  SELECT last_name, trunc((SYSDATE - hire_date) / 7) "Weeks Employed"
+  FROM employees
+  WHERE department_id = 90
+  
+MONTHS_BETWEEN: number of months between 2 dates, can be positive or negative
+  ex: MONTHS_BETWEEN('01-sep-95', '11-jan-94') -> 19.677419
+
+ADD_MONTH: add calendar months to date??
+  ex: ADD_MONTHS('11-Jan-94', 6) -> '11-JUL-94'
+
+NEXT_DAY: next day of the date specified
+  ex: NEXT_DAY('01-sep-95', 'FRIDAY') -> '08-sep-95'
+
+LAST_DAY: last day of the month
+  ex: LAST_DAY('01-feb-95') -> '28-feb-95'
+
+ROUND(date[, 'fmt']): round date, date is rounded to the nearest day
+  Assume: SYSDATE = '25-Jul-03'
+  ROUND(SYSDATE, 'MONTH'): '01-aug-03'
+  ROUND(SYSDATE, 'YEAR'): '01-jan-04'
+
+TRUNC: truncate date, same 
+  TRUNC(SYSDATE, 'MONTH'): '01-jul-03'
+  TRUNC(SYSDATE, 'YEAR'): '01-jan-03'
+
+ex: Display the employee number, hire date, 
+- number of months employed, 
+- six-month from now is the employees review date, 
+- what is the first Friday after hire date, and
+- last day of the hire month 
+for all employees who have been employed for fewer than 70 months.
+  
+  SELECT employee_id, hire_date,
+         MONTHS_BETWEEN( sysdate, hire_date) "Seniority",
+         ADD_MONTHS (hire_date, 6) "Review Date",
+         NEXT_DAY (hire_date, 'Friday'),
+         LAST_DAY (hire_date)
+  FROM employees
+  WHERE MONTHS_BETWEEN (sysdate, hire_date) > 70
+  
+  SELECT TO_CHAR(hire_date, 'fmDdspth "of" Month  YYYY   fmHH:MI')
+  FROM	 employees
+  //Result: Seventeenth of June 1987 12:00
+
+  
+ex: Compare the hire dates for all employees who started in 1997. Display the employee number, hire date, and start month using the ROUND and TRUNC functions.
+
+  SELECT 	employee_id, 
+		      hire_date,
+	       	ROUND(hire_date, 'MONTH') as Started_Month_Rounded, 
+	      	TRUNC(hire_date, 'MONTH') as Truncated
+  FROM  	employees
+  WHERE  	hire_date LIKE '%97';   
+
+TO_CHAR(date, 'format'): convert the date type to a specific format
+  Assume: SYSDATE = '25-Jul-03'
+  ex: TO_CHAR(SYSDATE, 'YYYY-Month-DD') -> '2003-July-25'
+      TO_CHAR(SYSDATE, 'MM/YY') -> '07/03'
+      TO_CHAR(SYSDATE, 'fmDD MONTH YYYY') AS HIREDATE -> 25 July 2003 //**Notes: no hyphen
+      TO_CHAR(hire_date, 'fmDdspth "of" Month  YYYY   fmHH:MI') -> Twenty-fifth of Jule 2003 12:00
+      
+Format:
+  YYYY: full year in numbers (ie, 2003, 1990, 1589)
+  YEAR: Year spelled out in English
+  MM: two digits month (ie 01, 07,11)
+  MONTH: full name of month (ie, July, November)
+  MON: three letter abbreviation of month
+  DY: three letter abbreviation of day (ie, MON, TUE, WED)
+  DAY: full name of day (ie, MONDAY, TUESDAY)
+  DD: numeric day (ie, 01, 31, 28)
+
+TO_CHAR(number, 'format'): format a number
+  TO_CHAR(24000, '$99,999.00') as SALARY
+
+Format: 
+  9: represent a number
+  0: forces a zero to be displayed
+  $: places a dollar sign
+  L: use local currency
+  .: print a decimal point
+  ,: print a comma
+  
+****HANDLING NULLS
+
+NVL (expr1, expr1): convert a null to an actual value
+ ex: SELECT last_name, salary, salary * NVL(comission_pct, 0)
+     FROM employees
+     
+ ex: NVL (hire_date, '01-JAN-2015') //**DATE NULL
+     NVL (city, 'Unavailable' ) // **CHARACTERS NULL
+  
+
