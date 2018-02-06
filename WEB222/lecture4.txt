@@ -1,0 +1,261 @@
+-----=== Week 4: Object-Orient JavaScript ===-----
+
+DATE METHOD:
+
+  Create Date object with current date and time:
+  
+  new Date()
+  Syntax: var today = new Date(); //notes the space between new and Date()
+                                  //returns Mon Sep 12 2017 15:22:15 GMT-0400 (Eastern Standard Time)
+                                  
+          var date1 = new Date(1996, 6, 6); //Sat Jul 06 1996 00:00:00 GMT-0400 (Eastern Standard Time)
+          var date2 = new Date(2001, 4, 10, 11, 13, 15, 0); //Thu May 10 2001 11:13:15 GMT-0400 (Eastern Standard Time)
+          var date3 = new Date("Sept 12, 2017"); //Tue Sep 12 2017 00:00:00 GMT-0400 (Eastern Standard Time)
+
+  getMonth()
+  syntax: var myMonth = (new Date()).getMonth(); //returns a number from 0 to 11 NOT 1 to 12
+                                                 //returns 8 if current month is Sept
+
+  getDate()
+  syntax: var myDay = (new Date()).getDate(); //return current date, just the date ie. 0 to 31
+  
+  getDay()
+  syntax: var myDayOfWeek = (new Date()).getDay(); //returns number 0 for Sunday, 1 for Monday, etc
+  
+  getFullYear()
+  syntax: var myYear = (new Date()). getFullYear(); //returns 4 digit current year ie. 2017
+  
+  getHours() / getMinutes / getSeconds()
+  syntax: var myDate = new Date();
+          var myHour = myDate.getHours();
+          var myMinutes = myDate.getMinutes();
+          var mySeconds = myDate.getSeconds();
+          alert(myHour + ":" +  myMinutes  + ":" + mySeconds); // e.g. 10:9:5 
+  
+  toString() / toLocaleString() / toDateString() / toUTCString() // UTC: Universal Time Coordinated
+  syntax: var dt = new Date();
+          console.log(dt);                  // Thu Jun 02 2016 11:11:50 GMT-0400 (Eastern Daylight Time)
+          console.log(dt.toString());       // Thu Jun 02 2016 11:11:50 GMT-0400 (Eastern Daylight Time)
+          console.log(dt.toLocaleString()); // 6/2/2016, 11:11:50 AM
+          console.log(dt.toUTCString());    // Thu, 02 Jun 2016 15:11:50 GMT
+          console.log(dt.toDateString());   // Thu Jun 02 2016
+
+MATH METHOD:
+
+  ****Notes: CASE-SENSITIVE
+  syntax: console.log( Math.max(0.52,1) ); //returns 1
+          console.log( Math.min(0.52,1) ); //returns 0.52
+          console.log( Math.pow(2,8) );    //returns 2^8
+          console.log( Math.sqrt(9) );     //returns 3
+          console.log( Math.ceil(0.52) );  //returns 1, round up nearest integer
+          console.log( Math.floor(0.52) ); //returns 0, round down nearest integer
+          console.log( Math.round(0.52) ); //returns 1, round up or down to nearest integer
+          
+   Math.random()
+   Math.random() * (max - min) + min; // Returns a random number between min (inclusive) and max (exclusive)
+   Math.floor(Math.random() * (max - min)) + min; // Returns a random integer between min (included) and max (excluded)
+   Math.floor(Math.random() * (max - min + 1)) + min; // Returns a random integer between min (included) and max (included)
+
+   syntax: console.log( Math.random() );    //returns a FLOAT between [0;1) ie. 0.00354812154
+   
+USER-DEFINE OBJECTS:   
+
+  Create Objects: 
+  
+  + Using LITERAL NOTATION:
+  syntax: var person1 = { name: "John", age: 30 };
+  
+          var person2 = {
+              name: "Steven",
+              age: 30,
+              talk: function () {
+                console.log('I am' + this.name + ", and I'm " + this.age + " years old.");
+              }
+              };
+          
+          console.log ( person1.name );
+          person2.talk(); // returns "My name is Steven, and I'm 25 years old."
+          
+  + Using FUNCTION CONSTRUCTOR
+  syntax: function Person(name, age) {
+              this.name = name;
+              this.age = age;
+              this.show = function () {
+          console.log('My name is ' + this.name + ", and I'm " + this.age + " years old.");
+          }; 
+          }
+
+          Person.prototype.say = function () {
+          console.log('My name is ' + this.name + ", and I'm " + this.age + " years old.");
+          } // to implement a function outside of object declaration, we need the keyword "prototype"
+         
+
+          var person3 = new Person("Steven", 30); //declare new object
+          console.log( person3.age);
+          person3.show(); // My name is Steven, and I'm 30 years old.
+          person3.say(); // My name is Steven, and I'm 30 years old.
+          
+  + (For-in) loop: iterates over the enumerable properties of an object, 
+  syntax: var student = {name:"John", program:"CPD", semester:2};
+          var str = "Student info:\n\t";
+
+          for (var x in student) { // x stands for …?
+          str += x + ": " + student[x] + "\n\t"; 
+          }
+          console.log(str); //Student info:
+                                  name: John
+                                  program: CPD
+                                  semester 2
+                                  
+  + forEach() methods: function myFunction(item, index) {
+                          console.log (index + ":" + item); }
+                       
+  syntax: var colors = ["Red", "Green", "Blue", "White"];
+          colors.forEach(myFunction);
+          
+  //"index" and "item" are keyword, don't change them. index for index number of array, and item is for the members of the array
+  
+
+  + Encapsulation method:
+  syntax: function Person(name, age) {
+          var name = name;
+          var age = age;
+
+          return { setName:   function(newName) {name = newName;},
+                 getName:   function() { return name; },
+                 setAge:       function(newAge) { age = newAge;},
+                 getAge:       function() { return age; }
+           };
+           }
+
+           var person1 = new Person("John", 25);  //create new object
+           console.log(person1.getName()); // John (getter)
+
+           person1.setAge(20); //setter
+           console.log(person1.getAge()); // 20
+
+  + Prototypal Inheritance: JS is prototype-based programmming, inheritance is pass down from object to object
+  syntax: var rectangle1 = {
+             width: 10,
+             height: 15,
+             show: function () {
+           console.log('dimensions: ' + this.width + " x " + this.height);
+          }
+          };
+
+          // creates a new rectangle using rectangle1 as prototype
+          var rectangle2 = Object.create(rectangle1); // clone from rectangle2, inherite all from rectangle1
+          rectangle2.show();    // dimensions: 10 x 15
+          rectangle2.width = 20; 
+          rectangle2.height = 25;
+          rectangle2.show();  // dimensions: 20 x 25
+
+    + To add properties and method to an existing object:
+    syntax: String.prototype.reverse = function () { //*******Don't know
+            var rev = '';
+            for (var i = this.length - 1; i >= 0; i--)
+                rev += this[i]; // the string
+            return rev;
+            };
+            
+    + Model: //to build prototype without data
+    syntax: 
+    
+    Example1:
+            //Build prototype
+            var subject = {
+            code: "", //data type that could be number, string (not array or object)
+            desc: "",
+            prog: [], //  the prog property is an array
+            info: {}  //  the info property is an object
+            };
+            
+            //Create subject instances using Object.create **case sensitive
+            var web222   = Object.create(subject); //build from subject
+            web222.code = 'WEB222';
+            web222.desc = 'Internet I - Internet Fundamentals ';
+            web222.prog = ['CPD', 'CPA'];
+            //***note the syntax: info is an object, need { };
+            web222.info  = { hours: 4, url:'http://scs.senecac.on.ca/course/web222' };
+            
+            var ipc144 = Object.create(subject);
+            ipc144.code = 'IPC144';
+            ipc144.desc = 'Introduction to Programming Using C';
+            ipc144.prog = ['CPD', 'CPA', 'CTY'];
+            ipc144.info = { hours: 5, url:'http://scs.senecac.on.ca/course/ipc144' };
+            
+            // Create a collection of all subject objects
+            var all = [ web222, bti220, ipc144 ];
+            all.push(btc140);
+ 
+            // Declare and initialize an accumulator
+            var totalHours = 0;
+ 
+            // Go through the collection, accumulate hours, dump to the Web Console
+            for (var i = 0; i < all.length; i++) {
+                  totalHours += all[i].info.hours;
+                  console.log(all[i]);
+             };
+ 
+            // Report the total hours
+            console.log('Total hours is ' + totalHours);
+            
+  Example2: //prototype 
+            var person = {
+            name: "",
+            bday: new Date(),
+            mail: "",
+            prnt: function () {
+                 return 'Info for ' + this.name + ', born on ' + 
+                    this.bday.toLocaleDateString() + ', email ' + this.mail;
+            }
+            };
+            
+            // inherit from person, with added properties for student
+            var student = Object.create(person, { prog: { value: '' }, stid: { value: '' }}); //{ value: '' } added properties from base
+                                                                                              
+            var stu1 = Object.create(student); //create object stu1 based on student
+            stu1.name = 'Stanley'; //assign name, notes these properties come from person
+            stu1.bday = new Date(1983, 10, 15); //assign date,  notes these properties come from person
+            stu1.mail = 'stan@myseneca.ca'; //mail
+            stu1.prog = 'BSD'; //program
+            stu1.stid = '012345678'; //student ID
+            console.log(stu1.name); //print out name
+            var x =stu1.prnt();//assign variable x to a function **note that function prnt is inherited from person
+            console.log(x); //print out x instead of the long code
+            
+            //build another object from person
+            
+            var teacher = Object.create(person, { offc: { value: "T2095" }, web: { value: " www.senecacollege.ca"}});
+            var tch1 = Object.create(teacher);
+            tch1.name = "Peter";
+            tch1.bday = new Date(1900,1,1);
+            tch1.mail = "peter@senecacollege.ca";
+            //tch1.offc = "T2099"; //shadowing values from initialzation 
+            //tch1.web = " www.senecacollege.ca";
+            console.log(tch1.name+ ", " + tch1.offc);
+            var x =tch1.prnt();
+            console.log(x);
+            
+
+
+            
+            
+
+
+
+            
+            
+            
+            
+
+            
+            
+            
+
+
+
+          
+          
+          
+          

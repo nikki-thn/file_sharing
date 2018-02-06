@@ -1,0 +1,190 @@
+----====week5====----
+
+  <html>  </html>: start and end html file
+  <head>  </head>: start end end of header   <title> text for title </title>: ...title, always in the head
+  <body>  </body>: ...body
+  <h1>    </h1>: ...header, it goes from h1 to h6 with h1 is largest size
+  <p>     </p>: ...paragraph  
+  <a> link  >text</a>: ...anchor (hyperlink)
+  
+  Elements: everything goes under html is called an element <p> some text </p> 
+  Tags: are <..> and </..> are tags
+  Attributes: an attribute is used to define the charcteristics of an element, example <p ....attributes ....> some text </p> . All attributes are made up f 2 parts: name and value. 
+  
+  HTML5 starts with:
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title> title of website </title>
+    <link ususally a CSS stylesheet />
+    <script usually javascript ></script> (link and scripts are example of html tags, all tags and attributes must be in lower case
+  </head>
+  <body> 
+    <h1> header </h1>
+    <p> some content </p>
+    <p>Here are links to
+      <a href="https://ict.senecacollege.ca/">School of ICT</a> and
+      <a href="http://www.senecacollege.ca/">Seneca College.</a>
+    </p>  
+    </body>
+  </html>
+  
+  PRESENTATION TAGS:
+  <p> </p>: paragraph 
+  <blockquote>  </blockquote>: indent both right and left margin
+  <pre> </pre>: keep white space
+  <br>: insert a single line break
+  <hr>: insert a horizontal rule
+  <mark> </mark>: highlight parts of a text
+  <b> </b>: bold text
+  <em>  </em>: italic text  OR  <i> </i>
+  <u> </u>: underline text
+  <sup> </sup> AND <sub>  </sub>: to do power, or chemical formula format
+  
+  UNORDERED LISTS:
+  <ul>  </ul> OR <ol>  </ol>: unordered/ordered list tags (for ordered list we can specified a start value <ol start="3">
+  <li>  </li>: to specifies a list item
+  ex: <ul>
+          <li>  item 1  </li>
+          <li>  item 2  </li>
+          <li>  ...     </li>
+      </ul>    
+      
+   <dl> </dl>: definition list
+      <dt> ... </dt>: definition term
+            <dd>  </dd>: definition descrption
+  
+  HTML Image
+  <img src="url to image" alt="alternate text for image">
+  
+  HTML Hyperlinks & Anchors
+  <a href="url...">text</a>
+    + Absolute link:
+    + Relative link: links relative to the current document
+    + Email link: <a href="mailto:email@address.mail">Email me</a>
+    + Phone link: <a href="tel:+141300000">+1 416 491 5050</a>
+    + Image link: <a href="http://www.senecacollge.ca/">
+                      <img src="url of image" alt="seneca"/>
+                  </a>    
+    + Bookmark link: <a id="timetable"></a>
+    
+  HTML Table
+  <table border="1"> : to specify thickness of border by default, a table has no border (border="0")
+  <table> </table>: start and end of a table
+  <caption> </caption>: name of table
+    <tr>  </tr> : to specify a row
+    <th>  </th>: specify header row, text will be bold
+    <td>  </td>: (table definition) or cell
+    <th rowspan(colspan)='value'> or <td rowspan(colspan)='value'>: indicates how many rows does the cell extend, by default is 1, if value ='0', it extends until the end of the table section (<thead>, <tbody> or <tfoot>)
+    ex: <th colspan=2>row 1 cell 1: colspan=2</th>
+        <th rowspan="2">row 1 cell 1: rowspan="2"</th>
+    <thead> , <tbody> , <tfoot>: to group rows into section 
+    
+    HTML <audio> Tags
+    <audio controls>
+      <source src="Track03.mp3" type="audio/mpeg" />
+      <source src="Track.ogg" type="audio/ogg" />
+      Your browser does not support the audio tag used.
+      </audio>
+    
+    
+    HTML <video> Tags
+    Attributes: autoplay, loop, preload, buffered, muted, played
+    <video width="320" height="240" controls>
+      <source src="movie.mp4" type="video/mp4"/>
+      <cource src="movie.ogg" type="video/ogg"/>
+      <source src="movie.webm" type="video/webm" />
+      Your browser does not support the video tag / type
+    </video>
+    <!-- browser will try all the video type or display the error message -->
+    <!-- "autoplay" and "loop" are additional attributes that can be used with the video tag 
+         Video Tag shares many attributes with Audio but has hight , width and poster (image to show while the media item is loading)
+    -->
+    
+    HTML Block and Inline Elements
+    HTML elements/tags are classified in two different categories depend on their display features:
+    
+    + Block-level elements: block-level elemt is a tag that creates large blocks of content.
+      eg: <table>, <div> (dividion), <hr>, <p>, <h1>, <ul>, <dl>, ...
+      By default, a block-level element starts on a new line. They can contain other block tags as well as inline tags and text
+    
+    + Inline-level elements: is a tag that defines the text or data in the document
+      eg: <span>, <a>, <img>, <td>, <input>, ...
+      Inline elements don't start new lines when they are used, generally only contain other inline tags, text or data
+      
+    HTML Empty Element
+    An empty element does not have closing tags or they are not paired. It does not contain any text/content. Empty tags are simply used as markers
+    eg: <img>, <input>, <br>, <hr>, (so don't do </input> or </img> etc)
+    
+    HTML Grouping Tags
+    <div> (division) and <span> elements have no special meaning, but they can group HTML elemtns into sections. Difference is <div> is block-level while <span> is inline element
+    Use div to specify style and format for a certain block of tags or elements???
+    eg: <div id="menu">
+         <a href="/index.htm">HOME</a> | 
+         <a href="/about/contact_us.htm"><span class="highlight"> 
+          CONTACT</span></a> | 
+         <a href="/about/index.htm">ABOUT</a>
+        </div>
+    
+      <div class="content" id="cnt1"> //class name is just for identifier if we want to make jump to certain part of the page????
+       <h5>Content</h5>
+       <p>
+       This is the example of <span class="highlight">span</span> 
+       tag and the <span class="highlight">div</span> tag along with    
+       <span class="highlight">CSS</span>.
+        </p>
+      </div>
+
+    USING JAVASCRIPT in an HTML PAGE
+    3 ways to include a Javascript in a webpage:  
+      + Inline JavaScript code: basic event handlers
+        eg: <input type="botton" is="hellp" value="Hello" onClick = "myFuction()">
+        
+      + Internal Javascript code: Using <script> tags, type attributes is optional because by default it is type="text/javascript", scripts can be inserted anywhere on a page, but we might need to pay attention depend on what the script required to run, or use the last method to put it anywhere (run script after the whole website is load kinda thing)
+      eg: <!DOCTYPE html>
+          <html>
+            <head>
+               <title>WEB222</title>
+                <script>
+            // include your JavaScript code here
+               </script>
+           </head>
+         <body>
+            <script type='text/javascript'>
+            // you can also include it here!
+            </script>
+        </body>
+        </html>
+
+      
+      + External JavaScript code: ***prefered way, using <script> tags with a "src" attributes. "src" attributes will contain a path (absolute or relative) to a seperate Javascript (.js) file
+      eg: <!DOCTYPE html>
+          <html>
+          <head>
+             <title>WEB222</title>
+             <script src="js/myFile.js"></script>
+         </head>
+         <body>
+            <script type='text/javascript' src="js/myOtherJSFile.js"></script>
+        </body>
+       </html>
+       
+    UPDATING PAGE TEXT FROM JAVASCRIPT
+    DOM (Document Object Model) is a 2-way application programming interface (API) for HTML documents, with DOM, we can read/write access to any element on the page!
+    We need to target our elements for DOM. For example, we use "id" attribute to uniquely identify any element we want for DOM object (duplicate id values are NOT allowed in HTML documents).
+    
+
+    
+    
+    
+
+  
+  SPECIAL CHARACTERS:
+  &nbsp; - non-breaking space
+  &lt; - less thsn (will print out "<")
+  &gt; - greater tgab (will print out ">")
+  
+  &ampl - & sign
+  &copy - copyright symbol
+  

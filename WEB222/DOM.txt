@@ -1,0 +1,125 @@
+
+THE DOCUMENT OBJECT
+
+The Document Object properties:
+  + document.anchors: return a collection of all the anchors in DOM
+  + document.forms: ....... all the forms in DOM
+  + document.images: ....... all the images in DOM
+  + ducument.links: ....... all the links in DOM
+  
+  + document.body: returns the body element of the document
+  + document.domain: returns the server name that loaded the DOM
+  + document.referrer: returns the URL of the document that loaded the current document
+  + document.title: to set or returns the tittle of the document
+  + document.URL: return the full URL of the document
+  + document.write(): writes HTML expressions or JavaScript code to a document
+  
+The Document Object Methods:
+  + document.querySelector(): returns the first element that matches a specified (use id - id are unique)
+  + document.querySelectorAll(): returns a NodeList contains all elements that matches (use class)
+  
+  + document.createElement():
+  + document.createTextNode(): to add text for the createElement
+  + document.createAttribute():
+  + document.createComment():
+
+  + document.addEventListener():
+  
+Example: 
+    function addHeading(){
+       var heading = document.createElement("h1");
+       var heading_text = document.createTextNode("Big Head!");
+       heading.appendChild(heading_text);
+       document.body.appendChild(heading); // append child at end of the page - document.body
+	}
+	
+	function addButton(){
+	   var aBox = document.getElementById("aBox");
+	   var button = document.createElement("button");
+	   var t = document.createTextNode("Click me");
+	   button.appendChild(t);
+	   aBox.appendChild(button); // append child at end of a specified element
+	}
+  
+  <div id="aBox">
+     <input type="button" onclick="addHeading()" value="Add Heading">&nbsp;&nbsp;&nbsp;
+	   <input type="button" onclick="addButton()" value="Add Button">
+  </div>
+  
+
+DOM Nodes / Element Object:
+
+Properties: 
+	+ element.className
+	+ element.id
+	+ element.innerHTML
+	+ element.style
+	+ element.parentNode
+	+ element.nextSibling
+	
+Methods:
+	+ element.querySelector(): vs document.querySelector() element only search within a specific element, while document search for 								everything, use element will narrow down the search
+	+ element.querySelectorAll()
+	+ element.getElementsByTagName()
+	+ element.getElementsByClassName()
+	+ element.addEventListener()
+	+ element.appendChild()
+	+ element.insertBefore()
+	+ element.removeChild()
+	+ element.setAttribute()
+	+ element.getAttribute()
+	
+Example:
+	function doit(){
+		var addrParas = document.querySelector("#address").querySelectorAll("p"); 
+
+		// highlight paragraphs inside of the section with "address" div element: 
+		for (var i = 0; i < addrParas.length; i++) {   
+			addrParas[i].style.backgroundColor = "yellow"; 
+		}
+	}
+		
+	function tryit(){
+		 var allParas = document.querySelectorAll("p");
+
+		  // highlight all paragraphs in the web page
+		  for (var i = 0; i < allParas.length; i++) {   
+			allParas[i].style.backgroundColor = "lightgreen"; 
+		}
+	}
+
+   <div id="address"> 
+       <p>70 The Pond Road</p> 
+       <p>Toronto, ON</p>
+   </div>
+
+   <p>
+      Highlight paragraphs inside of the section with "address" div element:<br> 
+      <input type="button" onclick="doit()" value="Do it">
+   </p>
+   <hr>
+   
+   <p>
+	Highlight all paragraphs in the web page:<br>
+      <input type="button" onclick="tryit()" value="Try it">
+   </p>
+
+
+Modifying element / node attributes:
+	+ hasAttribute(name):
+	+ getAttribute(name): get an attribute value
+	+ setAttribute(name, value): 
+	+ removeAttribute(name): 
+	
+Example 1:
+   	 var elem = document.querySelector("#d1");   
+    	elem.setAttribute("class", "notes");
+    	//  or just simply do  elem.class = "notes";
+
+Example 2:
+	var image =   document.createElement("img"); 
+	image.height = "50";
+	image.src="http://www.senecacollege.ca/images/seneca-logo2.svg";
+
+	document.body.appendChild(image);
+

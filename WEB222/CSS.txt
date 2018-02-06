@@ -1,0 +1,114 @@
+CSS IMPLEMENTATION: 
+Priority is given in combination / overide in order of inline > internal > external
+
+  + Inline: CSS rule is applied on a element using style attribute
+      <img src="logo.png" style="width:195px;height:43px">
+
+  + Internal: CSS rules are included in the head part of an html document and can be used anywhere in the html document
+      <style>   p { background-color: yellow; } </style>
+
+  + External: CSS rules are in a separate CSS file referenced from any html document using the html <link...> tag
+      <link rel="stylesheet" href="mystyle.css" type="text/css" />
+
+SELECTOR RULES:
+
+Class: .className { } 
+Tag + class:  tag.classMame  ( p.note, h2.webTitle, table.outputTable, etc ) //Note that p tag alone won't be affected
+        <p class="note" >..............</p>
+        <h3 class="note" >..............</h3>
+        <p>......<span class="note" >.....</span>.......</p>
+        
+Id: #idname {  }
+
+Descentdant combinator: ParentElem childElem {  }
+    p ul.class {  }  
+    table tbody  {   }
+
+UNIT USED IN CSS:
+
+  + Scalable: em, %
+  + Non-scalable: pt points, px-pixels
+CSS PROPERTIES:
+
+----==== TEXT ====----
+
+color: to change text color (#FF00FF, rgb(255,0,255), or use color name)
+text-align:
+text-decoration: underline, overline, line-through,  etc (not change the text itself)
+text-transform: capialize, uppercase, lowercase (changes the text)
+text-indent: indent text
+text-shadow: 5px 5px 5px red; /* Specify horizontal shadow, the vertical shadow, the blur distance, and the color of the shadow */
+
+word wrapping:         
+        div .wrap {
+	       width: 200px; /* 10em; */
+	       border:1px solid blue;
+	       word-wrap:break-word;
+        }
+
+
+font-family: font-family: "Times New Roman", Times, serif; 
+font-size: 18pt; /* or 1.5em, 24px, 150% */
+font-weight:  100, ..., 900, normal(400) , lighter, bolder, bold(700) 
+font-style: italic, oblique, normal 
+font-variant: normal; /* small-caps; */
+
+***Using font from the internet:
+   <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+   <style>
+   
+     .first { font-family: Lobster, cursive; } //Way 1
+      
+	  @import url(https://fonts.googleapis.com/css?family=Indie+Flower);  //Another way
+	  #num2 { font-family: 'Indie Flower', cursive; }
+    
+   </style>
+
+list-style-type: circle, square, upper-roman, lower-alpha
+
+background-color: 
+background-position: 
+background-repeat:
+Background-image:
+
+
+STYLING LINKS: 
+  <title>Link as button</title>
+   <style>
+	 a.menu { 
+		 display:block; 
+		 padding:2px; 
+		 text-decoration:none; 
+		 width:6em;
+		 margin:5px; 
+		 border-radius:10px; text-align:center; 
+		 border: 3px double black;
+	 } 
+   
+   
+		a.five:link {color:#ff0000;text-decoration:none;}
+		a.five:visited {color:#0000ff;text-decoration:none;}
+		a.five:hover {text-decoration:underline;}
+		
+		a.button {
+			border: 4px outset;
+			padding: 2px;
+			text-decoration: none;
+		}
+		a.button:active {
+			border: 4px inset;
+		}
+	
+	 a.menu:link, a.menu:visited {background:#A0FFA0;3px double black; } 
+	 a.menu:focus, a.menu:hover {background: #51CD51;3px double black;} 
+	 a.menu:active {background:#27AF27;border:3px double black;} 
+	</style>
+ </head>
+ <body>
+	<a class=menu href="index.html">Home</a>
+	<a class=menu href="about.html">About</a>
+	<a class=menu href="courses.html">Courses</a>
+	<a class=menu href="honesty.html">Honesty</a>
+	<a class=menu href=“#“ onClick=“help();”>Help</a>
+	
+
